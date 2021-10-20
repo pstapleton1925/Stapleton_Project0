@@ -49,15 +49,25 @@ object Main extends App {
 
   println(" ");
   println("Accessing the first document in the accessories collection...")
-  accessoriesColl.find().first().printHeadResult();
+  accessoriesColl.find().projection(excludeId()).first().printHeadResult();
 
   println(" ");
   println("Accessing the first document in the weapons collection...")
-  weaponsColl.find().first().printHeadResult();
+  weaponsColl.find().projection(excludeId()).first().printHeadResult();
 
   println(" ");
   println("Finding expert level weapons and sorting by element damage...");
-  weaponsColl.find(and(gte("baseDamage", 100))).sort(descending("elementDamage")).printResults();
+  println(" ");
+  weaponsColl.find(and(gte("baseDamage", 100))).sort(descending("elementDamage")).projection(excludeId()).printResults();
 
+  println(" ");
+  println("Finding the best accessories for defending against Lightning...")
+  println(" ");
+  accessoriesColl.aggregate(List(
+    filter(equal("element", "Lightning")), 
+    filter(gte("elementDefMod", 15)), 
+    project(fields(excludeId())), 
+    sort(orderBy(ascending("elementDamageMod"))))).printResults();
+  
   mongoClient.close();
 }

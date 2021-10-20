@@ -13,6 +13,11 @@ import org.mongodb.scala.model._
 
 import utils.Helpers._
 
+/*
+this project would not be possible without the help of team Amplifire (ctrl-alt-elite),
+MongoDB official docs
+and sbt official docs
+*/
 object MongoConnect {
   
   val mongoClient: MongoClient = MongoClient();
