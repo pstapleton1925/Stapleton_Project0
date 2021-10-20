@@ -1,0 +1,17 @@
+"C:\Program Files\MongoDB\Server\4.4\bin/mongod" --dbpath="C:\devRevature\mdb"
+
+"C:\Program Files\MongoDB\Server\4.4\bin/mongo"
+
+show dbs
+
+use rpgItems
+
+show collections
+
+db.weapons.find({}).pretty()
+
+db.weapons.find({element: "Wind"}).pretty()
+
+cd "C:\Users\Patrick\Documents\revatureToolsProjects\scalaFolder\Project0\Stapleton_Project0"
+
+sbt run
